@@ -1,4 +1,4 @@
-package com.example.airticketsapp
+package com.example.air_tickets.presentation
 
 import android.content.res.Resources.getSystem
 import android.os.Bundle

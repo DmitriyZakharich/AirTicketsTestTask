@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":air_tickets:domain"))
+    implementation(project(":air_tickets:data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

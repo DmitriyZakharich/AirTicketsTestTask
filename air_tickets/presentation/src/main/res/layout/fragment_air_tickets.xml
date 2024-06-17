@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/basic_black"
     android:orientation="vertical"
-    tools:context=".AirTicketsFragment">
+    tools:context="com.example.air_tickets.presentation.AirTicketsFragment">
 
     <TextView
         android:layout_width="match_parent"
