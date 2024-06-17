@@ -70,54 +70,6 @@
 
         </LinearLayout>
 
-
-        <!--        <ImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:src="@drawable/ic_search"-->
-        <!--            android:layout_marginLeft="8dp"/>-->
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:orientation="vertical"-->
-        <!--            android:layout_marginLeft="17dp">-->
-
-        <!--            <EditText-->
-        <!--                android:id="@+id/edittext_from"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:ems="10"-->
-        <!--                android:inputType="text"-->
-        <!--                tools:text="Минск"-->
-        <!--                android:textColor="@color/white"-->
-        <!--                android:textSize="16sp"-->
-        <!--                android:hint="@string/hint_from"-->
-        <!--                android:textColorHint="@color/grey_6"/>-->
-
-        <!--            <EditText-->
-        <!--                android:id="@+id/edittext_to"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:ems="10"-->
-        <!--                android:inputType="text"-->
-        <!--                android:textColor="@color/white"-->
-        <!--                android:textSize="16sp"-->
-        <!--                android:hint="@string/hint_to"-->
-        <!--                android:textColorHint="@color/grey_6"/>-->
-        <!--        </LinearLayout>-->
-
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="16dp"-->
-
-        <!--            android:background="@drawable/custom_background"-->
-        <!--            android:gravity="center_vertical">-->
-
     </LinearLayout>
 
     <LinearLayout
