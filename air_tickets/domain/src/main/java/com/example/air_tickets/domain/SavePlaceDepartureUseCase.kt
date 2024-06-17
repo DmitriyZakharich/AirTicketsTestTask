@@ -1,7 +1,7 @@
 package com.example.air_tickets.domain
 
 class SavePlaceDepartureUseCase(private val repository: Repository) {
-    fun execute(data: String)  {
-
+    suspend fun execute(data: String)  {
+        repository.save(data)
     }
 }

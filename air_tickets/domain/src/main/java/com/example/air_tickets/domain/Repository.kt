@@ -1,6 +1,8 @@
 package com.example.air_tickets.domain
 
+import kotlinx.coroutines.flow.Flow
+
 interface Repository {
-    fun save()
-    fun getData(): String
+    suspend fun save(data: String)
+    fun getData(): Flow<String>
 }
