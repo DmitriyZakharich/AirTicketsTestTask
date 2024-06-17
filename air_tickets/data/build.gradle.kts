@@ -42,6 +42,11 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //DataStore
     implementation(libs.androidx.datastore.preferences)
+
+    //Retrofit2
+    implementation (libs.converter.gson)
+    implementation (libs.retrofit)
 
 }

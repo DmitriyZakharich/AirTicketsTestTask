@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -50,4 +51,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation (libs.dagger)
+    kapt (libs.dagger.compiler)
+    implementation(libs.javax.inject)
 }
