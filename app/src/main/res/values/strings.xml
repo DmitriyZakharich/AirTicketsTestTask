@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AirTicketsApp</string>
+    <string name="air_tickets">Авиабилеты</string>
+    <string name="hotels">Отели</string>
+    <string name="shorts">Короче</string>
+    <string name="subscriptions">Подписки</string>
+    <string name="profile">Профиль</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hotel_fragment">HotelFragment</string>
+    <string name="shorts_fragment">ShortsFragment</string>
+    <string name="profile_fragment">ProfileFragment</string>
 </resources>

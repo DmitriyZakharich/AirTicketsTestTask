@@ -5,11 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/mainContainer"
     android:background="@color/grey_2">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_margin="16dp"
         android:background="@drawable/custom_background"
         android:gravity="center_vertical"
@@ -17,18 +22,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
                 android:src="@drawable/ic_airplane2" />
 
             <EditText
-                android:id="@+id/edittext_from"
+                android:id="@+id/edittext_place_departure"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -38,35 +44,50 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/grey_6"
                 android:textSize="16sp"
-                tools:text="Минск" />
+                android:singleLine="true"
+                tools:text="Минск"
+                android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+                android:paddingStart="10dp"
+                android:background="@android:color/transparent"/>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#5E5F61"
+            android:layout_marginHorizontal="16dp"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
                 android:src="@drawable/ic_search"
-                app:tint="@color/white" />
+                android:tint="@color/white"/>
 
             <EditText
-                android:id="@+id/edittext_to"
+                android:id="@+id/edittext_place_arrival"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/hint_to"
                 android:inputType="text"
+                android:singleLine="true"
                 android:textColor="@color/white"
+                android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                 android:textColorHint="@color/grey_6"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:background="@android:color/transparent"/>
 
         </LinearLayout>
 
@@ -78,89 +99,124 @@
         android:orientation="horizontal"
         android:layout_marginHorizontal= "16dp">
 
-
-
-        <LinearLayout
+        <include
+            android:id="@+id/quick_button_item_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            layout="@layout/quick_button_item"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="TODO"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/difficult_route" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="TODO"
-                android:src="@mipmap/ic_launcher" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/anywhere" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="TODO"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weekend" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
+        <include
+            android:id="@+id/quick_button_item_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            layout="@layout/quick_button_item"/>
+
+        <include
+            android:id="@+id/quick_button_item_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            layout="@layout/quick_button_item"/>
+
+        <include
+            android:id="@+id/quick_button_item_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            layout="@layout/quick_button_item"/>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:id="@+id/difficult_route_layout">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:contentDescription="TODO"-->
+<!--                android:src="@drawable/image_difficult_route"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="@string/difficult_route"-->
+<!--                android:gravity="center"/>-->
 
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="TODO"
-                android:src="@mipmap/ic_launcher" />
+<!--        </LinearLayout>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hot_tickets" />
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center_horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:contentDescription="TODO"-->
+<!--                android:src="@drawable/image_anywhere" />-->
+
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/anywhere" />-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center_horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:contentDescription="TODO"-->
+<!--                android:src="@drawable/image_weekend" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/weekend" />-->
+
+<!--        </LinearLayout>-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center_horizontal">-->
+
+
+<!--            <ImageView-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:contentDescription="TODO"-->
+<!--                android:src="@drawable/image_hot_tickets" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="@string/hot_tickets"-->
+<!--                android:gravity="center"/>-->
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 
@@ -175,147 +231,197 @@
         android:layout_margin="16dp"
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
+            android:id="@+id/popular_destination_item_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="8dp">
+            layout="@layout/popular_destination_item"/>
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/image_istanbul"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#5E5F61"/>
 
-            <TextView
-                android:id="@+id/some_id3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:lineSpacingExtra="0sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/istanbul"
-                android:textAppearance="@style/some_id"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-
-            <TextView
-                android:id="@+id/some_id4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:lineSpacingExtra="0sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/popular_destination"
-                android:textAppearance="@style/some_id"
-                android:textColor="#5E5F61"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView3" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
+            android:id="@+id/popular_destination_item_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="8dp">
+            layout="@layout/popular_destination_item"/>
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/image_sochi"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#5E5F61"/>
 
-            <TextView
-                android:id="@+id/some_id6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:lineSpacingExtra="0sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/sochi"
-                android:textAppearance="@style/some_id"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-
-            <TextView
-                android:id="@+id/some_id7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:lineSpacingExtra="0sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/popular_destination"
-                android:textAppearance="@style/some_id"
-                android:textColor="#5E5F61"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-                app:layout_constraintStart_toEndOf="@+id/imageView5" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
+            android:id="@+id/popular_destination_item_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="8dp">
+            layout="@layout/popular_destination_item"/>
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/image_phuket"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#5E5F61"/>
 
-            <TextView
-                android:id="@+id/some_id8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:lineSpacingExtra="0sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/phuket"
-                android:textAppearance="@style/some_id"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toTopOf="@+id/imageView6" />
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingVertical="8dp">-->
 
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/imageView3"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/image_istanbul"-->
+<!--                android:scaleType="fitXY"-->
+<!--                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <TextView
-                android:id="@+id/some_id9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:lineSpacingExtra="0sp"
-                android:layout_marginLeft="8dp"
-                android:text="@string/popular_destination"
-                android:textAppearance="@style/some_id"
-                android:textColor="#5E5F61"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                app:layout_constraintStart_toEndOf="@+id/imageView6" />
+<!--            <TextView-->
+<!--                android:id="@+id/some_id3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:lineSpacingExtra="0sp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:text="@string/istanbul"-->
+<!--                android:textAppearance="@style/some_id"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView3"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageView3" />-->
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/some_id4"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:lineSpacingExtra="0sp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:text="@string/popular_destination"-->
+<!--                android:textAppearance="@style/some_id"-->
+<!--                android:textColor="#5E5F61"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageView3"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView3" />-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#5E5F61"/>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingVertical="8dp">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/imageView5"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/image_sochi"-->
+<!--                android:scaleType="fitXY"-->
+<!--                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/some_id6"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:lineSpacingExtra="0sp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:text="@string/sochi"-->
+<!--                android:textAppearance="@style/some_id"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView5"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageView5" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/some_id7"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:lineSpacingExtra="0sp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:text="@string/popular_destination"-->
+<!--                android:textAppearance="@style/some_id"-->
+<!--                android:textColor="#5E5F61"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageView5"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView5" />-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#5E5F61"/>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingVertical="8dp">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/imageView6"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/image_phuket"-->
+<!--                android:scaleType="fitXY"-->
+<!--                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/some_id8"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:lineSpacingExtra="0sp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:text="@string/phuket"-->
+<!--                android:textAppearance="@style/some_id"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView6"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageView6" />-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/some_id9"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:lineSpacingExtra="0sp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:text="@string/popular_destination"-->
+<!--                android:textAppearance="@style/some_id"-->
+<!--                android:textColor="#5E5F61"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageView6"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imageView6" />-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#5E5F61"/>-->
 
 
     </LinearLayout>

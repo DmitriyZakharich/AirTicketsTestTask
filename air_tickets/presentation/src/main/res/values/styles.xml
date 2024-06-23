@@ -11,7 +11,7 @@
         <item name="android:shadowColor">#00000040</item>
     </style>
 
-    <style name="some_id">
+    <style name="title_1">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">#D9D9D9</item>
         <item name="android:shadowColor">#40000000</item>
@@ -20,7 +20,7 @@
         <item name="android:shadowRadius">4</item>
     </style>
 
-    <style name="some_id2">
+    <style name="title_2">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:shadowColor">#40000000</item>
@@ -38,11 +38,6 @@
         <item name="android:shadowRadius">4</item>
     </style>
 
-    <style name="buda">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-    </style>
-
     <style name="price">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#FFFFFF</item>
@@ -51,4 +46,62 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize16Percent" parent="">
         <item name="cornerSize">16%</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize8Percent" parent="">
+        <item name="cornerSize">8%</item>
+    </style>
+
+    <style name="materialButtonOutlinedStyle" parent="">
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="chip_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="chipIconTint">@color/white</item>
+        <item name="chipCornerRadius">50dp</item>
+        <item name="chipBackgroundColor">@color/background_1</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+
+    <style name="edittext_air_tickets_fragment">
+        <item name="android:layout_weight">1</item>
+        <item name="android:ems">10</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColorHint">@color/grey_6</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="title_3">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text_2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+    </style>
+
+    <style name="button_text_1">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">text</item>
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/grey_6</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="title_4">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

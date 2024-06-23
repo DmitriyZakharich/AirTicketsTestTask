@@ -6,4 +6,5 @@
     <color name="grey_7">#DBDBDB</color>
     <color name="grey_6">#9F9F9F</color>
     <color name="grey_2">#242529</color>
+    <color name="transparent">#00000000</color>
 </resources>

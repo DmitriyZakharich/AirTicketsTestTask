@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".country_selected_screen.CountrySelectedFragment"
+    android:background="#0C0C0C">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_background">
+
+        <ImageView
+            android:id="@+id/imageView_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/image_back_arrow_2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edittext_place_departure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_from"
+            app:layout_constraintBottom_toTopOf="@+id/edittext_place_arrival"
+            app:layout_constraintEnd_toStartOf="@+id/imageView_replace"
+            app:layout_constraintStart_toEndOf="@+id/imageView_back"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Минск"
+            android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+            style="@style/button_text_1"/>
+
+        <ImageView
+            android:id="@+id/imageView_replace"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/image_replace"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/edittext_place_departure"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edittext_place_departure" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#5E5F61"
+            app:layout_constraintBottom_toTopOf="@+id/edittext_place_arrival"
+            app:layout_constraintStart_toEndOf="@+id/imageView_back"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_place_departure"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <EditText
+            android:id="@+id/edittext_place_arrival"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_back"
+            app:layout_constraintTop_toBottomOf="@+id/line"
+            app:layout_constraintVertical_bias="0.5"
+            style="@style/button_text_1" />
+
+        <ImageView
+            android:id="@+id/imageView_cross"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/image_cross"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/edittext_place_arrival"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edittext_place_arrival" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/c1"
+                style="@style/chip_style"
+                android:text="@string/back"
+                app:chipIcon="@drawable/ic_plus"
+                app:chipIconTint="@color/white"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_data"
+                style="@style/chip_style"
+                android:text="@string/date"/>
+
+            <com.google.android.material.chip.Chip
+                style="@style/chip_style"
+                android:text="@string/number_passengers_class"
+                app:chipIcon="@drawable/ic_human"
+                app:chipIconTint="#5E5F61" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/chip_style"
+                android:text="@string/filters"
+                app:chipIcon="@drawable/ic_filter"
+                app:chipIconTint="@color/white" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_background3">
+
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:text="Прямые рейсы"
+            android:textAppearance="@style/title_1"
+            android:lineSpacingExtra="0sp"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
+
+        <include
+            android:id="@+id/first_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/direct_flights_item"/>
+
+        <include
+            android:id="@+id/second_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/direct_flights_item"/>
+
+        <include
+            android:id="@+id/third_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/direct_flights_item"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/show_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_all_tickets"
+        android:layout_marginTop="16dp"
+        style="@style/button_text_1"
+        android:textAllCaps="false"
+        android:textStyle="italic"
+        android:background="@drawable/custom_background5"/>
+</LinearLayout>

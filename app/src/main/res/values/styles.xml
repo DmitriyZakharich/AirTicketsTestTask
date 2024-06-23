@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTheme">
+
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="itemIconTint">@color/bottom_nav_color</item>
+        <item name="itemTextColor">@color/bottom_nav_color</item>
+        <item name="itemTextAppearanceActive">@dimen/design_bottom_navigation_active_text_size</item>
+        <item name="itemTextAppearanceInactive">@dimen/design_bottom_navigation_text_size</item>
+        <item name="itemActiveIndicatorStyle">@color/transparent</item>
+    </style>
+
+
+</resources>

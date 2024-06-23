@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintlayout2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_background3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_background4"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Прилет вечером" />
+
+    <TextView
+        android:id="@+id/price"
+        style="@style/title_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        tools:text="6 990 ₽" />
+
+    <ImageView
+        android:id="@+id/circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_red_circle"
+        app:layout_constraintBottom_toBottomOf="@+id/departure_airport_code"
+        app:layout_constraintStart_toStartOf="@id/price"
+        app:layout_constraintTop_toTopOf="@+id/departure_time" />
+
+
+    <TextView
+        android:id="@+id/departure_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/departure_airport_code"
+        app:layout_constraintStart_toEndOf="@+id/circle"
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="17:45"
+        android:textSize="14sp"/>
+
+    <View
+        android:id="@+id/dash"
+        android:layout_width="10dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="3dp"
+        android:background="#9F9F9F"
+        app:layout_constraintBottom_toBottomOf="@+id/departure_time"
+        app:layout_constraintStart_toEndOf="@+id/departure_time"
+        app:layout_constraintTop_toTopOf="@+id/departure_time"/>
+
+
+    <TextView
+        android:id="@+id/arrival_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/departure_time"
+        app:layout_constraintStart_toEndOf="@+id/dash"
+        app:layout_constraintTop_toTopOf="@+id/departure_time"
+        tools:text="17:45"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/flight_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/departure_time"
+        app:layout_constraintStart_toEndOf="@+id/arrival_time"
+        app:layout_constraintTop_toTopOf="@+id/departure_time"
+        tools:text="3,5 часа в пути"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/departure_time"
+        app:layout_constraintStart_toEndOf="@+id/flight_time"
+        app:layout_constraintTop_toTopOf="@+id/departure_time"
+        android:text="/"
+        android:textSize="14sp"/>
+
+
+    <TextView
+        android:id="@+id/transfer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/departure_time"
+        app:layout_constraintStart_toEndOf="@+id/slash"
+        app:layout_constraintTop_toTopOf="@+id/departure_time"
+        tools:text="Без пересадок"
+        android:textSize="14sp"/>
+
+
+    <TextView
+        android:id="@+id/departure_airport_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#9F9F9F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/departure_time"
+        app:layout_constraintTop_toBottomOf="@+id/departure_time"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginBottom="16dp"
+        tools:text="DME" />
+
+    <TextView
+        android:id="@+id/arrival_airport_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#9F9F9F"
+        app:layout_constraintBottom_toBottomOf="@id/departure_airport_code"
+        app:layout_constraintStart_toStartOf="@+id/arrival_time"
+        app:layout_constraintTop_toBottomOf="@id/arrival_time"
+        tools:text="AER"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/air_tickets_nav_graph">
+
+    <fragment
+        android:id="@+id/airTicketsFragment"
+        android:name="com.example.air_tickets.presentation.main_screen.AirTicketsFragment"
+        android:label="fragment_air_tickets"
+        tools:layout="@layout/fragment_air_tickets" >
+    </fragment>
+    <fragment
+        android:id="@+id/hotelFragment"
+        android:name="com.example.airticketsapp.stubs.HotelFragment"
+        android:label="fragment_hotel"
+        tools:layout="layout/fragment_hotel"
+        />
+    <fragment
+        android:id="@+id/shortsFragment"
+        android:name="com.example.airticketsapp.stubs.ShortsFragment"
+        android:label="fragment_shorts"
+        tools:layout="layout/fragment_shorts" />
+    <fragment
+        android:id="@+id/subscriptionsFragment"
+        android:name="com.example.airticketsapp.stubs.SubscriptionsFragment"
+        android:label="fragment_subscriptions"
+        tools:layout="layout/fragment_subscriptions" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.airticketsapp.stubs.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="layout/fragment_profile" />
+
+    <include app:graph="@navigation/air_tickets_nav_graph"/>
+</navigation>

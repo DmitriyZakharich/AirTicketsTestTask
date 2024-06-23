@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/air_tickets_nav_graph"
+    app:startDestination="@id/airTicketsFragment">
+
+    <fragment
+        android:id="@+id/airTicketsFragment"
+        android:name="com.example.air_tickets.presentation.main_screen.AirTicketsFragment"
+        android:label="fragment_air_tickets"
+        tools:layout="@layout/fragment_air_tickets" >
+        <action
+            android:id="@+id/action_airTicketsFragment_to_countrySelectedFragment"
+            app:destination="@id/countrySelectedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countrySelectedFragment"
+        android:name="com.example.air_tickets.presentation.country_selected_screen.CountrySelectedFragment"
+        android:label="fragment_country_selected"
+        tools:layout="@layout/fragment_country_selected" >
+        <action
+            android:id="@+id/action_countrySelectedFragment_to_ticketsListFragment"
+            app:destination="@id/ticketsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketsListFragment"
+        android:name="com.example.air_tickets.presentation.tickets_list_screen.TicketsListFragment"
+        android:label="fragment_tickets_list"
+        tools:layout="@layout/fragment_tickets_list" />
+</navigation>

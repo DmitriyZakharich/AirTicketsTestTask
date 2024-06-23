@@ -6,26 +6,25 @@
     android:layout_height="match_parent"
     android:background="@color/basic_black"
     android:orientation="vertical"
-    tools:context="com.example.air_tickets.presentation.AirTicketsFragment">
+    android:paddingHorizontal="16dp"
+    tools:context="com.example.air_tickets.presentation.main_screen.AirTicketsFragment">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:gravity="center_horizontal|top"
-        android:lineSpacingExtra="0sp"
+        android:gravity="center"
+        android:fontFamily="@font/sf_pro_display_regular"
         android:text="@string/search_cheap_flights"
-        android:textAppearance="@style/some_id"
-        android:translationY="-0.07sp" />
+        android:textAppearance="@style/title_1"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="122dp"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="36dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="#2F3035"
+        app:cardBackgroundColor="@color/background_1"
         app:cardCornerRadius="16dp">
 
         <LinearLayout
@@ -38,6 +37,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/image"
                 android:src="@drawable/ic_search"
                 android:layout_marginLeft="8dp"/>
 
@@ -48,31 +48,30 @@
                 android:layout_marginLeft="17dp">
 
                 <EditText
-                    android:id="@+id/edittext_from"
+                    android:id="@+id/edittext_place_departure"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="text"
                     tools:text="Минск"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+                    android:singleLine="true"
                     android:hint="@string/hint_from"
-                    android:textColorHint="@color/grey_6"/>
+                    style="@style/edittext_air_tickets_fragment" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#5E5F61"
+                    android:layout_marginEnd="20dp"/>
 
                 <EditText
-                    android:id="@+id/edittext_to"
+                    android:id="@+id/edittext_place_arrival"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:hint="@string/hint_to"
-                    android:textColorHint="@color/grey_6"/>
+                    android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+                    android:singleLine="true"
+                    style="@style/edittext_air_tickets_fragment"
+                    android:hint="@string/hint_to" />
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -80,20 +79,18 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:layout_marginLeft="15dp"
-        android:lineSpacingExtra="0sp"
-        android:text="@string/some_id"
+        android:text="@string/fly_away_musically"
         android:textSize="22sp"
-        android:textAppearance="@style/some_id2"
-        android:translationY="-0.07sp" />
-
+        android:fontFamily="@font/sf_pro_display_semibold"
+        android:textAppearance="@style/title_2" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"
+        android:paddingTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"/>
 
 </LinearLayout>
