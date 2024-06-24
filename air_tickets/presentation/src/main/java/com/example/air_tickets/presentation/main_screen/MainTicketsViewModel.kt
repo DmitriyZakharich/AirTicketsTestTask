@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AirTicketsViewModel @Inject constructor(
+class MainTicketsViewModel @Inject constructor(
     private val getOffersUseCase: GetOffersUseCase,
     private val savePlaceDepartureUseCase: SavePlaceDepartureUseCase,
     getPlaceDepartureUseCase: GetPlaceDepartureUseCase

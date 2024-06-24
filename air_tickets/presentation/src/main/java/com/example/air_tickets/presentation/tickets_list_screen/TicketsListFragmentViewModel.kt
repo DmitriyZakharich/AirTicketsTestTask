@@ -6,6 +6,7 @@ import com.example.air_tickets.domain.extensions.timeFormatting
 import com.example.air_tickets.domain.models.TicketModel
 import com.example.air_tickets.domain.use_cases.FormattingDateNumberSeatsUseCase
 import com.example.air_tickets.domain.use_cases.GetFullListTicketsUseCase
+import com.example.air_tickets.domain.use_cases.AddTimeDifferenceUseCase
 import com.example.air_tickets.domain.use_cases.RouteFormattingUseCase
 import com.example.air_tickets.presentation.common.TIME_FORMAT_2
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class TicketsListFragmentViewModel @Inject constructor(
     private val getFullListTicketsUseCase: GetFullListTicketsUseCase,
     private val routeFormattingUseCase: RouteFormattingUseCase,
-    private val formattingDateNumberSeatsUseCase: FormattingDateNumberSeatsUseCase
+    private val formattingDateNumberSeatsUseCase: FormattingDateNumberSeatsUseCase,
+    private val addTimeDifferenceUseCase: AddTimeDifferenceUseCase
 ) :ViewModel() {
 
     private val _tickets: MutableStateFlow<List<TicketModel>> = MutableStateFlow(listOf())
@@ -33,7 +35,10 @@ class TicketsListFragmentViewModel @Inject constructor(
 
     fun loadTickets() {
         viewModelScope.launch(Dispatchers.Main) {
-            _tickets.emit(getFullListTicketsUseCase.execute())
+
+            val tickets = getFullListTicketsUseCase.execute()
+            val processedTickets = addTimeDifferenceUseCase.execute(tickets, "yyyy-MM-dd'T'HH:mm:ss")
+            _tickets.emit(processedTickets)
         }
     }
 
@@ -47,5 +52,4 @@ class TicketsListFragmentViewModel @Inject constructor(
             _dateNumberSeats.emit(formattingDateNumberSeatsUseCase.execute(dataFormated, numberSeats))
         }
     }
-
 }

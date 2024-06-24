@@ -17,9 +17,12 @@
     <string name="date">дата</string>
     <string name="number_passengers_class">1,эконом</string>
     <string name="filters">фильтры</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="filters_2">Фильтр</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image">image</string>
     <string name="view_all_tickets">Посмотреть все билеты</string>
     <string name="no_data">Данные не загрузились</string>
+    <string name="without_transfers">Без пересадок</string>
+    <string name="price_chart">График цен</string>
+    <string name="error_image">Ошибка массива с картинками</string>
 </resources>

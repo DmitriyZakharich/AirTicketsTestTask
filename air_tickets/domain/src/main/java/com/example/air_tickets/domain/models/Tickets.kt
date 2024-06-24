@@ -6,14 +6,15 @@ data class TicketModel(
     val company: String = "",
     val departureModel: DepartureModel = DepartureModel(),
     val handLuggageModel: HandLuggageModel = HandLuggageModel(),
-    val hasTransfer: Boolean = false,
+    val hasTransfer: Boolean = true,
     val hasVisaTransfer: Boolean = false,
     val id: Int = 0,
     val isExchangable: Boolean = false,
     val isReturnable: Boolean = false,
     val luggageModel: LuggageModel = LuggageModel(),
     val price: PriceModel = PriceModel(),
-    val providerName: String = ""
+    val providerName: String = "",
+    val travelTime: String = ""
 )
 
 data class ArrivalModel(
@@ -37,7 +38,3 @@ data class LuggageModel(
     val hasLuggage: Boolean = false,
     val price: PriceModel = PriceModel()
 )
-
-//data class PriceModel(
-//    val value: Int = 0
-//)

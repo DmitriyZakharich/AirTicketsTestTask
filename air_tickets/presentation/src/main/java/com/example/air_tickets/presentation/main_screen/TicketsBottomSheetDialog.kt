@@ -1,7 +1,6 @@
 package com.example.air_tickets.presentation.main_screen
 
 import android.content.Context
-import android.text.InputFilter
 import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.LayoutInflater
 import androidx.core.widget.addTextChangedListener
@@ -14,9 +13,10 @@ import kotlinx.coroutines.launch
 
 class TicketsBottomSheetDialog(
     private val context: Context,
-    private val viewModel: AirTicketsViewModel,
+    private val viewModel: MainTicketsViewModel,
     private val onNavigate: (String, String) -> Unit,
     private val savePlaceDeparture: (String) -> Unit,
+    private val onNavigateToStub: () -> Unit,
 ) : BottomSheetDialog(context) {
 
     private var job: Job? = null
@@ -26,19 +26,22 @@ class TicketsBottomSheetDialog(
     init {
         setContentView(binding.root)
         setupAppearance()
-        setupBehavior()
+        setupHotkeyButtons()
+        setupPopularDestinationItems()
+        setupEdittextPlaceDeparture()
+        setupEdittextPlaceArrival()
     }
 
     private fun setupAppearance() {
         with(binding) {
-            quickButtonItem1.imageview.setImageResource(R.drawable.image_difficult_route)
-            quickButtonItem1.textview.text = context.getString(R.string.difficult_route)
-            quickButtonItem2.imageview.setImageResource(R.drawable.image_anywhere)
-            quickButtonItem2.textview.text = context.getString(R.string.anywhere)
-            quickButtonItem3.imageview.setImageResource(R.drawable.image_weekend)
-            quickButtonItem3.textview.text = context.getString(R.string.weekend)
-            quickButtonItem4.imageview.setImageResource(R.drawable.image_hot_tickets)
-            quickButtonItem4.textview.text = context.getString(R.string.hot_tickets)
+            buttonDifficultRoute.imageview.setImageResource(R.drawable.image_difficult_route)
+            buttonDifficultRoute.textview.text = context.getString(R.string.difficult_route)
+            buttonAnywhere.imageview.setImageResource(R.drawable.image_anywhere)
+            buttonAnywhere.textview.text = context.getString(R.string.anywhere)
+            buttonWeekend.imageview.setImageResource(R.drawable.image_weekend)
+            buttonWeekend.textview.text = context.getString(R.string.weekend)
+            buttonHotTickets.imageview.setImageResource(R.drawable.image_hot_tickets)
+            buttonHotTickets.textview.text = context.getString(R.string.hot_tickets)
 
             popularDestinationItem1.title.setText(R.string.istanbul)
             popularDestinationItem1.imageView.setImageResource(R.drawable.image_istanbul)
@@ -49,26 +52,55 @@ class TicketsBottomSheetDialog(
         }
     }
 
-    private fun setupBehavior() {
-        binding.edittextPlaceDeparture.addTextChangedListener{
+    private fun setupHotkeyButtons() {
+        binding.buttonDifficultRoute.itemLayout.setOnClickListener {
+            this.dismiss()
+            onNavigateToStub()
+        }
+        binding.buttonAnywhere.itemLayout.setOnClickListener {
+            binding.edittextPlaceArrival.setText(context.getString(R.string.anywhere))
+            binding.edittextPlaceArrival.setSelection(binding.edittextPlaceArrival.text.toString().length)
+        }
+        binding.buttonWeekend.itemLayout.setOnClickListener {
+            this.dismiss()
+            onNavigateToStub()
+        }
+        binding.buttonHotTickets.itemLayout.setOnClickListener {
+            this.dismiss()
+            onNavigateToStub()
+        }
+    }
+
+    private fun setupPopularDestinationItems() {
+        binding.popularDestinationItem1.constraintlayout.setOnClickListener {
+            binding.edittextPlaceArrival.setText(context.getString(R.string.istanbul))
+            binding.edittextPlaceArrival.setSelection(binding.edittextPlaceArrival.text.toString().length)
+        }
+        binding.popularDestinationItem2.constraintlayout.setOnClickListener {
+            binding.edittextPlaceArrival.setText(context.getString(R.string.sochi))
+            binding.edittextPlaceArrival.setSelection(binding.edittextPlaceArrival.text.toString().length)
+        }
+        binding.popularDestinationItem3.constraintlayout.setOnClickListener {
+            binding.edittextPlaceArrival.setText(context.getString(R.string.phuket))
+            binding.edittextPlaceArrival.setSelection(binding.edittextPlaceArrival.text.toString().length)
+        }
+    }
+
+    private fun setupEdittextPlaceDeparture() {
+        binding.edittextPlaceDeparture.addTextChangedListener {
             savePlaceDeparture(binding.edittextPlaceDeparture.text.toString())
         }
+    }
 
-        binding.quickButtonItem1.itemLayout
-            .setOnClickListener {
-                binding.edittextPlaceArrival.setText("Сложный маршрут")
-                binding.edittextPlaceArrival.setSelection(binding.edittextPlaceArrival.text.toString().length)
-            }
+    private fun setupEdittextPlaceArrival() {
         binding.edittextPlaceArrival.requestFocus()
-
-        binding.edittextPlaceArrival.setOnKeyListener { v, keyCode, event ->
-
+        binding.edittextPlaceArrival.setOnKeyListener { _, keyCode, _ ->
             var consumed = false
-
-            if (keyCode == KEYCODE_ENTER) {
+            if (keyCode == KEYCODE_ENTER && binding.edittextPlaceArrival.text.toString()
+                    .isNotBlank()
+            ) {
                 this.dismiss()
                 consumed = true
-
                 onNavigate(
                     binding.edittextPlaceDeparture.text.toString(),
                     binding.edittextPlaceArrival.text.toString()

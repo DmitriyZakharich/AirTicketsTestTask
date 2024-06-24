@@ -5,6 +5,7 @@ import com.example.air_tickets.domain.use_cases.GetPlaceDepartureUseCase
 import com.example.air_tickets.domain.repositories.MainScreenOffersRepository
 import com.example.air_tickets.domain.repositories.PlaceDepartureRepository
 import com.example.air_tickets.domain.repositories.TicketsRepository
+import com.example.air_tickets.domain.use_cases.AddTimeDifferenceUseCase
 import com.example.air_tickets.domain.use_cases.FormattingDateNumberSeatsUseCase
 import com.example.air_tickets.domain.use_cases.GetCurrentDataUseCase
 import com.example.air_tickets.domain.use_cases.GetFullListTicketsUseCase
@@ -48,4 +49,7 @@ class DomainModule {
 
     @Provides
     fun providesRouteFormattingUseCase(): RouteFormattingUseCase = RouteFormattingUseCase()
+
+    @Provides
+    fun providesAddTimeDifferenceUseCase(): AddTimeDifferenceUseCase = AddTimeDifferenceUseCase()
 }

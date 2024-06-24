@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_background4">
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filters_2"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:iconTint="@color/white"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        app:icon="@drawable/ic_filter"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textStyle="italic"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_chart"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:iconTint="@color/white"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        app:icon="@drawable/ic_graph"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textStyle="italic"
+        android:layout_marginEnd="5dp"/>
+
+</LinearLayout>

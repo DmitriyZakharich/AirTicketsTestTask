@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.air_tickets.presentation.common.DATA_KEY
 import com.example.air_tickets.presentation.common.NUMBER_OF_SEATS_KEY
@@ -39,11 +40,11 @@ class TicketsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         processingIncomingData()
         setupTicketsRecyclerView()
+        setupImageViewBack()
     }
 
     private fun processingIncomingData() {
         arguments?.let {
-
             viewModel.setData(
                 it.getString(PLACE_DEPARTURE_KEY),
                 it.getString(PLACE_ARRIVAL_KEY),
@@ -62,21 +63,6 @@ class TicketsListFragment : Fragment() {
                     binding.dataNumberSeats.text = data
                 }
             }
-
-//            val route = StringBuilder()
-//                .append(it.getString(PLACE_DEPARTURE_KEY).toString())
-//                .append('-')
-//                .append(it.getString(PLACE_ARRIVAL_KEY).toString())
-//                .toString()
-//            binding.routePoints.text = route
-//
-//            val dateNumberSeats = StringBuilder()
-//                .append(it.getString(DATA_KEY).toString())
-//                .append(", ")
-//                .append(it.getInt(NUMBER_OF_SEATS_KEY).toString())
-//                .append(" пассажир")
-//                .toString()
-//            binding.dataNumberSeats.text = dateNumberSeats
         }
     }
 
@@ -84,10 +70,16 @@ class TicketsListFragment : Fragment() {
         viewModel.loadTickets()
         jobTickets = lifecycleScope.launch {
             viewModel.tickets.collect { data ->
-                val customRecyclerAdapter = CustomRecyclerAdapter(data)
+                val customRecyclerAdapter = CustomRecyclerAdapter(data, requireActivity())
                 binding.ticketsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
                 binding.ticketsRecyclerView.adapter = customRecyclerAdapter
             }
+        }
+    }
+
+    private fun setupImageViewBack() {
+        binding.imageViewPopBackStack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

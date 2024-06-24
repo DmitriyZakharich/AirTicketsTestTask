@@ -23,9 +23,12 @@ fun OfferModel.mapToView(): OfferView = OfferView(
     town = town
 )
 
-fun Int.priceFormat(): String = String
+fun Int.priceFormat() = String
     .format(Locale.US, "%,d", this)
     .replace(",", " ")
     .plus(" ₽")
+
+
+fun String.addArrowPriceString() = this.plus(" >")
 
 

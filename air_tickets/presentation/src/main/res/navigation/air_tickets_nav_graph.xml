@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/air_tickets_nav_graph"
-    app:startDestination="@id/airTicketsFragment">
+    app:startDestination="@id/mainTicketsFragment">
 
     <fragment
-        android:id="@+id/airTicketsFragment"
-        android:name="com.example.air_tickets.presentation.main_screen.AirTicketsFragment"
+        android:id="@+id/mainTicketsFragment"
+        android:name="com.example.air_tickets.presentation.main_screen.MainTicketsFragment"
         android:label="fragment_air_tickets"
-        tools:layout="@layout/fragment_air_tickets" >
+        tools:layout="@layout/fragment_main_tickets" >
         <action
-            android:id="@+id/action_airTicketsFragment_to_countrySelectedFragment"
+            android:id="@+id/action_mainTicketsFragment_to_countrySelectedFragment"
             app:destination="@id/countrySelectedFragment" />
+        <action
+            android:id="@+id/action_mainTicketsFragment_to_stubFragment"
+            app:destination="@id/stubFragment" />
     </fragment>
     <fragment
         android:id="@+id/countrySelectedFragment"
@@ -28,4 +31,9 @@
         android:name="com.example.air_tickets.presentation.tickets_list_screen.TicketsListFragment"
         android:label="fragment_tickets_list"
         tools:layout="@layout/fragment_tickets_list" />
+    <fragment
+        android:id="@+id/stubFragment"
+        android:name="com.example.air_tickets.presentation.stubs.StubFragment"
+        android:label="fragment_stub"
+        tools:layout="@layout/fragment_stub" />
 </navigation>

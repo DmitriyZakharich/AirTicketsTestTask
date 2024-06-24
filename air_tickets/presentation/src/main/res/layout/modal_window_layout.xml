@@ -100,28 +100,28 @@
         android:layout_marginHorizontal= "16dp">
 
         <include
-            android:id="@+id/quick_button_item_1"
+            android:id="@+id/button_difficult_route"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             layout="@layout/quick_button_item"/>
 
         <include
-            android:id="@+id/quick_button_item_2"
+            android:id="@+id/button_anywhere"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             layout="@layout/quick_button_item"/>
 
         <include
-            android:id="@+id/quick_button_item_3"
+            android:id="@+id/button_weekend"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             layout="@layout/quick_button_item"/>
 
         <include
-            android:id="@+id/quick_button_item_4"
+            android:id="@+id/button_hot_tickets"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

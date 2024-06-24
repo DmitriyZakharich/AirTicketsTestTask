@@ -36,7 +36,7 @@ class ViewPagerAdapter(private val context: Context, private val list: List<Offe
             try {
                 imageView.setImageResource(images[position])
             } catch (ex: Exception) {
-                Toast.makeText(context, "Ошибка массива с картинками", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.error_image), Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -2,7 +2,6 @@ package com.example.air_tickets.presentation.country_selected_screen
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.air_tickets.domain.models.ShortDataTicketModel
+import com.example.air_tickets.domain.models.addArrowPriceString
 import com.example.air_tickets.domain.models.priceFormat
 import com.example.air_tickets.presentation.R
 import com.example.air_tickets.presentation.common.DATA_KEY
@@ -24,10 +23,7 @@ import com.example.air_tickets.presentation.databinding.FragmentCountrySelectedB
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import kotlin.system.measureTimeMillis
 
 @AndroidEntryPoint
 class CountrySelectedFragment : Fragment() {
@@ -64,6 +60,8 @@ class CountrySelectedFragment : Fragment() {
         setupDataChip()
         setupTicketsItems()
         setupShowAllButton()
+        setupImageViewReplace()
+        setupImageViewBack()
     }
 
     private fun processingIncomingData() {
@@ -104,22 +102,22 @@ class CountrySelectedFragment : Fragment() {
 
                 with(binding.firstItem) {
                     title.text = data[0].title
-                    timeRange.text = data[0].timeRange.joinToString(separator = " ")
-                    price.text = data[0].priceModel.value.priceFormat()
+                    timeRange.text = data[0].timeRange.joinToString(separator = "  ")
+                    price.text = data[0].priceModel.value.priceFormat().addArrowPriceString()
                     imageCircle.setImageResource(R.drawable.image_red_circle)
                 }
 
                 with(binding.secondItem) {
                     title.text = data[1].title
-                    timeRange.text = data[1].timeRange.joinToString(separator = " ")
-                    price.text = data[1].priceModel.value.priceFormat()
+                    timeRange.text = data[1].timeRange.joinToString(separator = "  ")
+                    price.text = data[1].priceModel.value.priceFormat().addArrowPriceString()
                     imageCircle.setImageResource(R.drawable.image_blue_circle)
                 }
 
                 with(binding.thirdItem) {
                     title.text = data[2].title
-                    timeRange.text = data[2].timeRange.joinToString(separator = " ")
-                    price.text = data[2].priceModel.value.priceFormat()
+                    timeRange.text = data[2].timeRange.joinToString(separator = "  ")
+                    price.text = data[2].priceModel.value.priceFormat().addArrowPriceString()
                     imageCircle.setImageResource(R.drawable.image_white_circle)
                 }
             }
@@ -132,6 +130,20 @@ class CountrySelectedFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_countrySelectedFragment_to_ticketsListFragment, bundle
             )
+        }
+    }
+
+    private fun setupImageViewReplace() {
+        binding.imageViewReplace.setOnClickListener {
+            val string = binding.edittextPlaceDeparture.text
+            binding.edittextPlaceDeparture.text = binding.edittextPlaceArrival.text
+            binding.edittextPlaceArrival.text = string
+        }
+    }
+
+    private fun setupImageViewBack() {
+        binding.imageViewBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

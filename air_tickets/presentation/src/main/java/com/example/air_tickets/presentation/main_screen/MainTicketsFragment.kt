@@ -1,7 +1,6 @@
 package com.example.air_tickets.presentation.main_screen
 
 import android.os.Bundle
-import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.air_tickets.presentation.R
 import com.example.air_tickets.presentation.common.PLACE_ARRIVAL_KEY
 import com.example.air_tickets.presentation.common.PLACE_DEPARTURE_KEY
-import com.example.air_tickets.presentation.databinding.FragmentAirTicketsBinding
+import com.example.air_tickets.presentation.databinding.FragmentMainTicketsBinding
 import com.example.air_tickets.presentation.main_screen.adapter.ViewPagerAdapter
 import com.example.air_tickets.presentation.main_screen.adapter.ViewPagerTransformer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -22,21 +21,21 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AirTicketsFragment : Fragment() {
+class MainTicketsFragment : Fragment() {
 
-    private val viewModel: AirTicketsViewModel by viewModels()
+    private val viewModel: MainTicketsViewModel by viewModels()
     private var jobPlaceDeparture: Job? = null
     private var jobPlaceDepartureBottomSheet: Job? = null
     private var jobViewPager: Job? = null
 
-    private var _binding: FragmentAirTicketsBinding? = null
+    private var _binding: FragmentMainTicketsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAirTicketsBinding.inflate(inflater, container, false)
+        _binding = FragmentMainTicketsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -68,8 +67,9 @@ class AirTicketsFragment : Fragment() {
                 val ticketsBottomSheetDialog = TicketsBottomSheetDialog(
                     requireContext(),
                     viewModel,
-                    ::onNavigate,
-                    ::savePlaceDeparture
+                    ::onNavigateCountrySelectedFragment,
+                    ::savePlaceDeparture,
+                    ::onNavigateToStub
                 )
                 ticketsBottomSheetDialog.execute()
                 ticketsBottomSheetDialog.show()
@@ -91,14 +91,18 @@ class AirTicketsFragment : Fragment() {
         }
     }
 
-    private fun onNavigate(placeDeparture: String, placeArrival: String) {
+    private fun onNavigateCountrySelectedFragment(placeDeparture: String, placeArrival: String) {
         val bundle = Bundle().apply {
             putString(PLACE_DEPARTURE_KEY, placeDeparture)
             putString(PLACE_ARRIVAL_KEY, placeArrival)
         }
         findNavController().navigate(
-            R.id.action_airTicketsFragment_to_countrySelectedFragment, bundle
+            R.id.action_mainTicketsFragment_to_countrySelectedFragment, bundle
         )
+    }
+
+    private fun onNavigateToStub() {
+        findNavController().navigate(R.id.action_mainTicketsFragment_to_stubFragment)
     }
 
     private fun savePlaceDeparture(string: String) {
@@ -116,15 +120,4 @@ class AirTicketsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-//    private val filter = InputFilter { source, start, end, dest, dstart, dend ->
-//        (start until end).forEach { index ->
-//            val c = source[index]
-////            if ( c != 'A') {
-//            if (!(c in 'А'..'Я' || (c in 'а'..'я'))) {
-//                return@InputFilter ""
-//            }
-//        }
-//        return@InputFilter null
-//    }
 }

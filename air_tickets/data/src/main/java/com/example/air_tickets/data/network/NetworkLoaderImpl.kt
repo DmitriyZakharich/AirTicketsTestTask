@@ -1,6 +1,5 @@
 package com.example.air_tickets.data.network
 
-import android.util.Log
 import com.example.air_tickets.data.repositories.interfaces.NetworkLoader
 import com.example.air_tickets.data.response_results.FullListTicketsResponseResult
 import com.example.air_tickets.data.response_results.MainScreenOffersResponseResult
@@ -10,7 +9,7 @@ class NetworkLoaderImpl(retrofitHelper: RetrofitHelper): NetworkLoader {
 
     private val apiService = retrofitHelper.getRetrofit().create(ApiService::class.java)
 
-    override suspend fun loadMainScreenOffersList(): MainScreenOffersResponseResult {
+    override suspend fun loadMainScreenOffers(): MainScreenOffersResponseResult {
         val response = apiService.getMainScreenOffers()
         return if (response.isSuccessful && response.body() != null) {
             MainScreenOffersResponseResult.Success(response.body()!!)
@@ -20,10 +19,7 @@ class NetworkLoaderImpl(retrofitHelper: RetrofitHelper): NetworkLoader {
     }
 
     override suspend fun loadShortListTickets(): ShortListTicketsResponseResult {
-
         val response = apiService.getShortListTickets()
-
-
         return if (response.isSuccessful && response.body() != null) {
             ShortListTicketsResponseResult.Success(response.body()!!)
         } else {
@@ -33,8 +29,6 @@ class NetworkLoaderImpl(retrofitHelper: RetrofitHelper): NetworkLoader {
 
     override suspend fun loadFullListTickets(): FullListTicketsResponseResult {
         val response = apiService.getFullListTickets()
-
-        Log.d("TAGcccccccc", "response.body(): ${response.body()}")
         return if (response.isSuccessful && response.body() != null) {
             FullListTicketsResponseResult.Success(response.body()!!)
         } else {

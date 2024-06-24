@@ -8,6 +8,7 @@
     android:paddingTop="10dp">
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -36,10 +37,10 @@
         style="@style/title_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="21dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@+id/view"
         tools:text="6 990 ₽" />
 
     <ImageView

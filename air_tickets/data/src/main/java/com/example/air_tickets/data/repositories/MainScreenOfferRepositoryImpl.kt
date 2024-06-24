@@ -11,7 +11,7 @@ class MainScreenOfferRepositoryImpl(private val networkLoader: NetworkLoader) :
 
     override suspend fun getMainScreenOffers(): List<OfferModel?>? {
 
-        return when (val responseResult = networkLoader.loadMainScreenOffersList()) {
+        return when (val responseResult = networkLoader.loadMainScreenOffers()) {
             MainScreenOffersResponseResult.Failure -> {
                 listOf()
             }
@@ -23,4 +23,3 @@ class MainScreenOfferRepositoryImpl(private val networkLoader: NetworkLoader) :
         }
     }
 }
-

@@ -10,7 +10,6 @@
     tools:context=".country_selected_screen.CountrySelectedFragment"
     android:background="#0C0C0C">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -46,7 +45,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/image"
             android:src="@drawable/image_replace"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/edittext_place_departure"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edittext_place_departure" />
@@ -78,7 +77,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/image"
             android:src="@drawable/image_cross"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/edittext_place_arrival"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edittext_place_arrival" />
@@ -123,7 +122,6 @@
 
     </HorizontalScrollView>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -135,7 +133,7 @@
         <TextView
             android:id="@+id/some_id"
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="match_parent"
             android:text="Прямые рейсы"
             android:textAppearance="@style/title_1"
             android:lineSpacingExtra="0sp"
@@ -149,11 +147,23 @@
             android:layout_height="wrap_content"
             layout="@layout/direct_flights_item"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="2dp"
+            android:background="@drawable/custom_background2"/>
+
         <include
             android:id="@+id/second_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/direct_flights_item"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="2dp"
+            android:background="@drawable/custom_background2"/>
 
         <include
             android:id="@+id/third_item"
@@ -161,6 +171,11 @@
             android:layout_height="wrap_content"
             layout="@layout/direct_flights_item"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="2dp"
+            android:background="@drawable/custom_background2"/>
     </LinearLayout>
 
     <Button
@@ -172,5 +187,7 @@
         style="@style/button_text_1"
         android:textAllCaps="false"
         android:textStyle="italic"
+        app:backgroundTint="@null"
         android:background="@drawable/custom_background5"/>
+
 </LinearLayout>
