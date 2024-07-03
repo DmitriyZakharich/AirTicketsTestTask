@@ -7,6 +7,20 @@ data class ShortDataTicketModel(
     val title: String = ""
 )
 
+data class ShortDataTicketView(
+    val id: Int = 0,
+    val price: String = "",
+    val timeRange: String = "",
+    val title: String = ""
+)
+
+fun ShortDataTicketModel.mapToView() = ShortDataTicketView(
+    id = id,
+    price = priceModel.value.priceFormat().addArrowPriceString(),
+    timeRange = timeRange.joinToString(separator = "  "),
+    title = title
+)
+
 data class PriceModel(
     val value: Int = 0
 )

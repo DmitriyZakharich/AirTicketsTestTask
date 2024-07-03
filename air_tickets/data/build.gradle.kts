@@ -14,6 +14,10 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -23,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -34,6 +39,7 @@ android {
 
 dependencies {
     implementation(project(":air_tickets:domain"))
+    implementation(project(":base"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

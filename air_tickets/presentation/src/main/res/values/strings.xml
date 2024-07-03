@@ -5,14 +5,7 @@
     <string name="fly_away_musically">Музыкально отлететь</string>
     <string name="hint_from">Откуда - Москва</string>
     <string name="hint_to">Куда - Турция</string>
-    <string name="difficult_route">Сложный маршрут</string>
-    <string name="anywhere">Куда угодно</string>
-    <string name="hot_tickets">Горячие билеты</string>
-    <string name="weekend">Выходные</string>
-    <string name="istanbul">Стамбул</string>
-    <string name="sochi">Сочи</string>
     <string name="popular_destination">Популярное направление</string>
-    <string name="phuket">Пхукет</string>
     <string name="back">обратно</string>
     <string name="date">дата</string>
     <string name="number_passengers_class">1,эконом</string>
@@ -25,4 +18,5 @@
     <string name="without_transfers">Без пересадок</string>
     <string name="price_chart">График цен</string>
     <string name="error_image">Ошибка массива с картинками</string>
+    <string name="error_loading">Ошибка загрузки данных для быстрых кнопок</string>
 </resources>

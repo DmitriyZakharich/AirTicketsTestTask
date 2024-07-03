@@ -9,7 +9,7 @@ import com.example.air_tickets.domain.repositories.MainScreenOffersRepository
 class MainScreenOfferRepositoryImpl(private val networkLoader: NetworkLoader) :
     MainScreenOffersRepository {
 
-    override suspend fun getMainScreenOffers(): List<OfferModel?>? {
+    override suspend fun getMainScreenOffers(): List<OfferModel> {
 
         return when (val responseResult = networkLoader.loadMainScreenOffers()) {
             MainScreenOffersResponseResult.Failure -> {
@@ -17,8 +17,7 @@ class MainScreenOfferRepositoryImpl(private val networkLoader: NetworkLoader) :
             }
 
             is MainScreenOffersResponseResult.Success -> {
-                val list = responseResult.offers.offers?.map { it?.mapToDomain() }
-                list ?: listOf()
+                responseResult.offers.offers?.map { it?.mapToDomain() ?: OfferModel() } ?: listOf()
             }
         }
     }

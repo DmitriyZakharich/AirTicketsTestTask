@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.air_tickets.domain.extensions.timeFormatting
 import com.example.air_tickets.domain.models.DataModel
 import com.example.air_tickets.domain.models.ShortDataTicketModel
+import com.example.air_tickets.domain.models.ShortDataTicketView
+import com.example.air_tickets.domain.use_cases.FormatShortLisTicketsUseCase
 import com.example.air_tickets.domain.use_cases.GetCurrentDataUseCase
 import com.example.air_tickets.domain.use_cases.GetShortListTicketsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,18 +19,20 @@ import javax.inject.Inject
 @HiltViewModel
 class CountrySelectedViewModel @Inject constructor(
     private val getShortListTicketsUseCase: GetShortListTicketsUseCase,
+    private val formatShortLisTicketsUseCase: FormatShortLisTicketsUseCase,
     private val getCurrentDataUseCase: GetCurrentDataUseCase
 ) : ViewModel() {
 
-    private val _tickets: MutableStateFlow<List<ShortDataTicketModel>> = MutableStateFlow(listOf())
-    val tickets: Flow<List<ShortDataTicketModel>> = _tickets
+    private val _tickets: MutableStateFlow<List<ShortDataTicketView>> = MutableStateFlow(listOf())
+    val tickets: Flow<List<ShortDataTicketView>> = _tickets
 
     private val _time: MutableStateFlow<DataModel> = MutableStateFlow(DataModel())
     val time: Flow<DataModel> = _time
 
     fun loadTickets() {
         viewModelScope.launch(Dispatchers.Main) {
-            _tickets.emit(getShortListTicketsUseCase.execute())
+            val list = getShortListTicketsUseCase.execute()
+            _tickets.emit(formatShortLisTicketsUseCase.execute(list))
         }
     }
 

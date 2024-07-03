@@ -9,7 +9,7 @@ import kotlin.coroutines.CoroutineContext
 
 class GetOffersUseCase(private val mainScreenOffersRepository: MainScreenOffersRepository) {
 
-    suspend fun execute(dispatcher: CoroutineContext = Dispatchers.IO): List<OfferModel?>? =
+    suspend fun execute(dispatcher: CoroutineContext = Dispatchers.IO): List<OfferModel> =
         withContext(dispatcher) {
             mainScreenOffersRepository.getMainScreenOffers()
         }

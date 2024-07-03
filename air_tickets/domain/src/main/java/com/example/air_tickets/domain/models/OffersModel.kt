@@ -3,10 +3,10 @@ package com.example.air_tickets.domain.models
 import java.util.Locale
 
 data class OfferModel(
-    val id: Int? = 0,
-    val priceModel: PriceModel? = PriceModel(),
-    val title: String? = "",
-    val town: String? = ""
+    val id: Int = 0,
+    val priceModel: PriceModel = PriceModel(),
+    val title: String = "",
+    val town: String = ""
 )
 
 data class OfferView(
@@ -18,7 +18,7 @@ data class OfferView(
 
 fun OfferModel.mapToView(): OfferView = OfferView(
     id = id,
-    price = priceModel?.value?.priceFormat() ?: "0 ₽",
+    price = priceModel.value.priceFormat(),
     title = title,
     town = town
 )
@@ -30,5 +30,3 @@ fun Int.priceFormat() = String
 
 
 fun String.addArrowPriceString() = this.plus(" >")
-
-

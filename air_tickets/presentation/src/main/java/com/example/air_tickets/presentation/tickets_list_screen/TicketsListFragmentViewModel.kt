@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.air_tickets.domain.extensions.timeFormatting
 import com.example.air_tickets.domain.models.TicketModel
-import com.example.air_tickets.domain.use_cases.FormattingDateNumberSeatsUseCase
+import com.example.air_tickets.domain.use_cases.FormatDateNumberSeatsUseCase
 import com.example.air_tickets.domain.use_cases.GetFullListTicketsUseCase
 import com.example.air_tickets.domain.use_cases.AddTimeDifferenceUseCase
 import com.example.air_tickets.domain.use_cases.RouteFormattingUseCase
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class TicketsListFragmentViewModel @Inject constructor(
     private val getFullListTicketsUseCase: GetFullListTicketsUseCase,
     private val routeFormattingUseCase: RouteFormattingUseCase,
-    private val formattingDateNumberSeatsUseCase: FormattingDateNumberSeatsUseCase,
+    private val formatDateNumberSeatsUseCase: FormatDateNumberSeatsUseCase,
     private val addTimeDifferenceUseCase: AddTimeDifferenceUseCase
 ) :ViewModel() {
 
@@ -49,7 +49,7 @@ class TicketsListFragmentViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.Main) {
             val dataFormated = data?.timeFormatting(TIME_FORMAT_2) ?: ""
-            _dateNumberSeats.emit(formattingDateNumberSeatsUseCase.execute(dataFormated, numberSeats))
+            _dateNumberSeats.emit(formatDateNumberSeatsUseCase.execute(dataFormated, numberSeats))
         }
     }
 }

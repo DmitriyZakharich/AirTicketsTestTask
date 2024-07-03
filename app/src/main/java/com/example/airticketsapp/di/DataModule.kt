@@ -1,16 +1,22 @@
 package com.example.airticketsapp.di
 
 import android.content.Context
+import com.example.air_tickets.data.BuildConfig
 import com.example.air_tickets.data.local.CacheFormCacheFormDataStoreImpl
+import com.example.air_tickets.data.network.ApiService
+import com.example.air_tickets.data.network.ApiServiceFactory
+import com.example.air_tickets.data.network.MockApiService
 import com.example.air_tickets.data.repositories.interfaces.NetworkLoader
 import com.example.air_tickets.data.network.NetworkLoaderImpl
 import com.example.air_tickets.data.repositories.MainScreenOfferRepositoryImpl
 import com.example.air_tickets.data.repositories.PlaceDepartureRepositoryImpl
 import com.example.air_tickets.data.network.RetrofitHelper
+import com.example.air_tickets.data.repositories.TicketsBottomSheetRepositoryImpl
 import com.example.air_tickets.data.repositories.TicketsRepositoryImpl
 import com.example.air_tickets.data.repositories.interfaces.CacheFormDataStore
 import com.example.air_tickets.domain.repositories.MainScreenOffersRepository
 import com.example.air_tickets.domain.repositories.PlaceDepartureRepository
+import com.example.air_tickets.domain.repositories.TicketsBottomSheetRepository
 import com.example.air_tickets.domain.repositories.TicketsRepository
 import dagger.Module
 import dagger.Provides
@@ -30,6 +36,11 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideApiService(retrofitHelper: RetrofitHelper): ApiService =
+        ApiServiceFactory(retrofitHelper).createApiService()
+
+    @Provides
+    @Singleton
     fun provideOffersRepository(
         networkLoader: NetworkLoader
     ): MainScreenOffersRepository =
@@ -38,9 +49,9 @@ class DataModule {
     @Provides
     @Singleton
     fun provideNetworkLoader(
-        retrofitHelper: RetrofitHelper
+        apiService: ApiService
     ): NetworkLoader =
-        NetworkLoaderImpl(retrofitHelper)
+        NetworkLoaderImpl(apiService)
 
     @Provides
     @Singleton
@@ -63,4 +74,8 @@ class DataModule {
     ): TicketsRepository =
         TicketsRepositoryImpl(networkLoader)
 
+    @Provides
+    @Singleton
+    fun provideTicketsBottomSheetRepository(): TicketsBottomSheetRepository =
+        TicketsBottomSheetRepositoryImpl()
 }

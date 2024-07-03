@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.BuildCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +20,7 @@ import com.example.air_tickets.presentation.common.NUMBER_OF_SEATS_KEY
 import com.example.air_tickets.presentation.common.PLACE_ARRIVAL_KEY
 import com.example.air_tickets.presentation.common.PLACE_DEPARTURE_KEY
 import com.example.air_tickets.presentation.common.TIME_FORMAT_1
+import com.example.air_tickets.presentation.databinding.DirectFlightsItemBinding
 import com.example.air_tickets.presentation.databinding.FragmentCountrySelectedBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -55,7 +57,6 @@ class CountrySelectedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         processingIncomingData()
         setupDataChip()
         setupTicketsItems()
@@ -92,37 +93,31 @@ class CountrySelectedFragment : Fragment() {
 
     private fun setupTicketsItems() {
         viewModel.loadTickets()
+        val bindingList = getBindingList()
         jobTickets = lifecycleScope.launch {
             viewModel.tickets.collect { data ->
-
                 if (data.size != 3) {
                     Log.e("Log.e", getString(R.string.no_data))
                     return@collect
                 }
 
-                with(binding.firstItem) {
-                    title.text = data[0].title
-                    timeRange.text = data[0].timeRange.joinToString(separator = "  ")
-                    price.text = data[0].priceModel.value.priceFormat().addArrowPriceString()
-                    imageCircle.setImageResource(R.drawable.image_red_circle)
+                bindingList.forEachIndexed { index, item ->
+                    item.title.text = data[index].title
+                    item.timeRange.text = data[index].timeRange
+                    item.price.text = data[index].price
                 }
 
-                with(binding.secondItem) {
-                    title.text = data[1].title
-                    timeRange.text = data[1].timeRange.joinToString(separator = "  ")
-                    price.text = data[1].priceModel.value.priceFormat().addArrowPriceString()
-                    imageCircle.setImageResource(R.drawable.image_blue_circle)
-                }
-
-                with(binding.thirdItem) {
-                    title.text = data[2].title
-                    timeRange.text = data[2].timeRange.joinToString(separator = "  ")
-                    price.text = data[2].priceModel.value.priceFormat().addArrowPriceString()
-                    imageCircle.setImageResource(R.drawable.image_white_circle)
+                with(binding) {
+                    firstItem.imageCircle.setImageResource(R.drawable.image_red_circle)
+                    secondItem.imageCircle.setImageResource(R.drawable.image_blue_circle)
+                    firstItem.imageCircle.setImageResource(R.drawable.image_white_circle)
                 }
             }
         }
     }
+
+    private fun getBindingList(): List<DirectFlightsItemBinding> =
+        listOf(binding.firstItem, binding.secondItem, binding.thirdItem)
 
     private fun setupShowAllButton() {
         binding.showAll.setOnClickListener {

@@ -15,5 +15,4 @@ interface ApiService {
 
     @GET("c0464573-5a13-45c9-89f8-717436748b69")
     suspend fun getFullListTickets(): Response<FullListTicketsEntity>
-
 }

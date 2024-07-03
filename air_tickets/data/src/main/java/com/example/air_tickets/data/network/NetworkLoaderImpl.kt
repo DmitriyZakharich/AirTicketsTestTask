@@ -5,9 +5,7 @@ import com.example.air_tickets.data.response_results.FullListTicketsResponseResu
 import com.example.air_tickets.data.response_results.MainScreenOffersResponseResult
 import com.example.air_tickets.data.response_results.ShortListTicketsResponseResult
 
-class NetworkLoaderImpl(retrofitHelper: RetrofitHelper): NetworkLoader {
-
-    private val apiService = retrofitHelper.getRetrofit().create(ApiService::class.java)
+class NetworkLoaderImpl(private val apiService: ApiService) : NetworkLoader {
 
     override suspend fun loadMainScreenOffers(): MainScreenOffersResponseResult {
         val response = apiService.getMainScreenOffers()

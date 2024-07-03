@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 class MainTicketsFragment : Fragment() {
 
     private val viewModel: MainTicketsViewModel by viewModels()
+    private val ticketsBottomSheetDialogViewModel: TicketsBottomSheetDialogViewModel by viewModels()
     private var jobPlaceDeparture: Job? = null
     private var jobPlaceDepartureBottomSheet: Job? = null
     private var jobViewPager: Job? = null
@@ -41,7 +42,6 @@ class MainTicketsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupPlaceDepartureEdittext()
         setupPlaceArrivalEdittext()
         setupOffersViewPager()
@@ -69,7 +69,8 @@ class MainTicketsFragment : Fragment() {
                     viewModel,
                     ::onNavigateCountrySelectedFragment,
                     ::savePlaceDeparture,
-                    ::onNavigateToStub
+                    ::onNavigateToStub,
+                    ticketsBottomSheetDialogViewModel
                 )
                 ticketsBottomSheetDialog.execute()
                 ticketsBottomSheetDialog.show()

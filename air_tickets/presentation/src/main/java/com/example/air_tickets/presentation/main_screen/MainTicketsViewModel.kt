@@ -7,6 +7,7 @@ import com.example.air_tickets.domain.use_cases.GetPlaceDepartureUseCase
 import com.example.air_tickets.domain.models.OfferModel
 import com.example.air_tickets.domain.models.OfferView
 import com.example.air_tickets.domain.models.mapToView
+import com.example.air_tickets.domain.use_cases.FormatOffersUseCase
 import com.example.air_tickets.domain.use_cases.SavePlaceDepartureUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainTicketsViewModel @Inject constructor(
     private val getOffersUseCase: GetOffersUseCase,
+    private val formatOffersUseCase: FormatOffersUseCase,
     private val savePlaceDepartureUseCase: SavePlaceDepartureUseCase,
     getPlaceDepartureUseCase: GetPlaceDepartureUseCase
 ) : ViewModel() {
@@ -35,11 +37,9 @@ class MainTicketsViewModel @Inject constructor(
 
     fun getOffers() {
         viewModelScope.launch(Dispatchers.Main) {
-            val offerModelList: List<OfferModel?>? = getOffersUseCase.execute()
-            val offerViewList = offerModelList?.map {
-                it?.mapToView() ?: OfferView()
-            }
-            _listOfferModelData.emit(offerViewList ?: listOf())
+            val offerModelList: List<OfferModel> = getOffersUseCase.execute()
+            val formattedList = formatOffersUseCase.execute(offerModelList)
+            _listOfferModelData.emit(formattedList)
         }
     }
 }
