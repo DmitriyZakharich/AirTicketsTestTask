@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/mainTicketsFragment"
+        android:id="@+id/air_tickets_nav_graph"
         android:title="@string/air_tickets"
         android:icon="@drawable/ic_air_tickets"/>
     <item

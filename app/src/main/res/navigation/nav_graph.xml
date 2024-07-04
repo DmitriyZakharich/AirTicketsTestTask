@@ -6,12 +6,6 @@
     app:startDestination="@id/air_tickets_nav_graph">
 
     <fragment
-        android:id="@+id/mainTicketsFragment"
-        android:name="com.example.air_tickets.presentation.main_screen.MainTicketsFragment"
-        android:label="fragment_air_tickets"
-        tools:layout="@layout/fragment_main_tickets" >
-    </fragment>
-    <fragment
         android:id="@+id/hotelFragment"
         android:name="com.example.airticketsapp.stubs.HotelFragment"
         android:label="fragment_hotel"
