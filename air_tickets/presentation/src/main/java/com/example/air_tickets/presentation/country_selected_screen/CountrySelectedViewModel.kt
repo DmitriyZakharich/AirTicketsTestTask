@@ -1,14 +1,13 @@
 package com.example.air_tickets.presentation.country_selected_screen
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.air_tickets.domain.extensions.timeFormatting
 import com.example.air_tickets.domain.models.DataModel
-import com.example.air_tickets.domain.models.ShortDataTicketModel
 import com.example.air_tickets.domain.models.ShortDataTicketView
 import com.example.air_tickets.domain.use_cases.FormatShortLisTicketsUseCase
 import com.example.air_tickets.domain.use_cases.GetCurrentDataUseCase
 import com.example.air_tickets.domain.use_cases.GetShortListTicketsUseCase
+import com.example.air_tickets.presentation.common.NavigateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +20,7 @@ class CountrySelectedViewModel @Inject constructor(
     private val getShortListTicketsUseCase: GetShortListTicketsUseCase,
     private val formatShortLisTicketsUseCase: FormatShortLisTicketsUseCase,
     private val getCurrentDataUseCase: GetCurrentDataUseCase
-) : ViewModel() {
+) : NavigateViewModel() {
 
     private val _tickets: MutableStateFlow<List<ShortDataTicketView>> = MutableStateFlow(listOf())
     val tickets: Flow<List<ShortDataTicketView>> = _tickets

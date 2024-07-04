@@ -1,14 +1,13 @@
 package com.example.air_tickets.presentation.main_screen
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.air_tickets.domain.use_cases.GetOffersUseCase
-import com.example.air_tickets.domain.use_cases.GetPlaceDepartureUseCase
 import com.example.air_tickets.domain.models.OfferModel
 import com.example.air_tickets.domain.models.OfferView
-import com.example.air_tickets.domain.models.mapToView
 import com.example.air_tickets.domain.use_cases.FormatOffersUseCase
+import com.example.air_tickets.domain.use_cases.GetOffersUseCase
+import com.example.air_tickets.domain.use_cases.GetPlaceDepartureUseCase
 import com.example.air_tickets.domain.use_cases.SavePlaceDepartureUseCase
+import com.example.air_tickets.presentation.common.NavigateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -22,7 +21,7 @@ class MainTicketsViewModel @Inject constructor(
     private val formatOffersUseCase: FormatOffersUseCase,
     private val savePlaceDepartureUseCase: SavePlaceDepartureUseCase,
     getPlaceDepartureUseCase: GetPlaceDepartureUseCase
-) : ViewModel() {
+) : NavigateViewModel() {
 
     val flowPlaceDeparture: Flow<String> = getPlaceDepartureUseCase.execute()
 

@@ -113,7 +113,6 @@ class TicketsBottomSheetDialog(
     }
 
     fun execute() {
-
         ticketsBottomSheetDialogViewModel.getListShortcutsInfo()
         ticketsBottomSheetDialogViewModel.getListPopularDestinations()
 
@@ -129,7 +128,6 @@ class TicketsBottomSheetDialog(
                     shortcutButtons[index].textview.text = context.getString(item.stringResource)
                 }
             }
-
         }
 
         jobPopularDestinations = lifecycleScope.launch {

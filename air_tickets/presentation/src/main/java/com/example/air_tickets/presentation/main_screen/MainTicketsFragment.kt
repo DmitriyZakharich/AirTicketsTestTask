@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.air_tickets.presentation.R
+import com.example.air_tickets.presentation.common.NavigateEvent
+import com.example.air_tickets.presentation.common.NavigateState
 import com.example.air_tickets.presentation.common.PLACE_ARRIVAL_KEY
 import com.example.air_tickets.presentation.common.PLACE_DEPARTURE_KEY
 import com.example.air_tickets.presentation.databinding.FragmentMainTicketsBinding
@@ -28,6 +30,7 @@ class MainTicketsFragment : Fragment() {
     private var jobPlaceDeparture: Job? = null
     private var jobPlaceDepartureBottomSheet: Job? = null
     private var jobViewPager: Job? = null
+    private var jobNavigate: Job? = null
 
     private var _binding: FragmentMainTicketsBinding? = null
     private val binding get() = _binding!!
@@ -45,6 +48,7 @@ class MainTicketsFragment : Fragment() {
         setupPlaceDepartureEdittext()
         setupPlaceArrivalEdittext()
         setupOffersViewPager()
+        setupNavigation()
     }
 
     private fun setupPlaceDepartureEdittext() {
@@ -92,18 +96,29 @@ class MainTicketsFragment : Fragment() {
         }
     }
 
+    private fun setupNavigation() {
+        jobNavigate = lifecycleScope.launch {
+            viewModel.navigateState.collect {
+                when (it) {
+                    NavigateState.Idle -> {}
+                    is NavigateState.NavigateTo -> findNavController().navigate(it.id, it.bundle)
+                    NavigateState.PopBackStack -> findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
     private fun onNavigateCountrySelectedFragment(placeDeparture: String, placeArrival: String) {
         val bundle = Bundle().apply {
             putString(PLACE_DEPARTURE_KEY, placeDeparture)
             putString(PLACE_ARRIVAL_KEY, placeArrival)
         }
-        findNavController().navigate(
-            R.id.action_mainTicketsFragment_to_countrySelectedFragment, bundle
-        )
+
+        viewModel.navigate(NavigateEvent.NavigateTo(R.id.action_mainTicketsFragment_to_countrySelectedFragment, bundle))
     }
 
     private fun onNavigateToStub() {
-        findNavController().navigate(R.id.action_mainTicketsFragment_to_stubFragment)
+        viewModel.navigate(NavigateEvent.NavigateTo(R.id.action_mainTicketsFragment_to_stubFragment))
     }
 
     private fun savePlaceDeparture(string: String) {
@@ -114,6 +129,7 @@ class MainTicketsFragment : Fragment() {
         jobPlaceDeparture?.cancel()
         jobPlaceDepartureBottomSheet?.cancel()
         jobViewPager?.cancel()
+        jobNavigate?.cancel()
         super.onStop()
     }
 

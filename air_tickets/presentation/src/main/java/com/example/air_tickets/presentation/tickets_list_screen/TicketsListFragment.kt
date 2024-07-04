@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.air_tickets.presentation.common.DATA_KEY
 import com.example.air_tickets.presentation.common.NUMBER_OF_SEATS_KEY
+import com.example.air_tickets.presentation.common.NavigateEvent
+import com.example.air_tickets.presentation.common.NavigateState
 import com.example.air_tickets.presentation.common.PLACE_ARRIVAL_KEY
 import com.example.air_tickets.presentation.common.PLACE_DEPARTURE_KEY
 import com.example.air_tickets.presentation.databinding.FragmentTicketsListBinding
@@ -21,10 +23,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class TicketsListFragment : Fragment() {
 
-    private val viewModel: TicketsListFragmentViewModel by viewModels()
+    private val viewModel: TicketsListViewModel by viewModels()
     private var jobTickets: Job? = null
     private var jobRoute: Job? = null
     private var jobDataNumberSeats: Job? = null
+    private var jobNavigate: Job? = null
     private var _binding: FragmentTicketsListBinding? = null
     private val binding get() = _binding!!
 
@@ -40,6 +43,7 @@ class TicketsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         processingIncomingData()
         setupTicketsRecyclerView()
+        setupNavigation()
         setupImageViewBack()
     }
 
@@ -77,9 +81,21 @@ class TicketsListFragment : Fragment() {
         }
     }
 
+    private fun setupNavigation() {
+        jobNavigate = lifecycleScope.launch {
+            viewModel.navigateState.collect {
+                when (it) {
+                    NavigateState.Idle -> {}
+                    is NavigateState.NavigateTo -> {}
+                    NavigateState.PopBackStack -> findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
     private fun setupImageViewBack() {
         binding.imageViewPopBackStack.setOnClickListener {
-            findNavController().popBackStack()
+            viewModel.navigate(NavigateEvent.PopBackStack)
         }
     }
 

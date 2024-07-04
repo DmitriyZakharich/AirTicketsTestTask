@@ -1,36 +1,37 @@
 package com.example.air_tickets.data.network
 
+import com.example.air_tickets.data.entities.FullListTicketsEntity
+import com.example.air_tickets.data.entities.MainScreenOffersEntity
+import com.example.air_tickets.data.entities.ShortListTicketsEntities
 import com.example.air_tickets.data.repositories.interfaces.NetworkLoader
-import com.example.air_tickets.data.response_results.FullListTicketsResponseResult
-import com.example.air_tickets.data.response_results.MainScreenOffersResponseResult
-import com.example.air_tickets.data.response_results.ShortListTicketsResponseResult
+import com.example.air_tickets.data.response_results.ResponseResult
 
 class NetworkLoaderImpl(private val apiService: ApiService) : NetworkLoader {
 
-    override suspend fun loadMainScreenOffers(): MainScreenOffersResponseResult {
+    override suspend fun loadMainScreenOffers(): ResponseResult {
         val response = apiService.getMainScreenOffers()
         return if (response.isSuccessful && response.body() != null) {
-            MainScreenOffersResponseResult.Success(response.body()!!)
+            ResponseResult.Success<MainScreenOffersEntity>(response.body()!!)
         } else {
-            MainScreenOffersResponseResult.Failure
+            ResponseResult.Failure
         }
     }
 
-    override suspend fun loadShortListTickets(): ShortListTicketsResponseResult {
+    override suspend fun loadShortListTickets(): ResponseResult {
         val response = apiService.getShortListTickets()
         return if (response.isSuccessful && response.body() != null) {
-            ShortListTicketsResponseResult.Success(response.body()!!)
+            ResponseResult.Success<ShortListTicketsEntities>(response.body()!!)
         } else {
-            ShortListTicketsResponseResult.Failure
+            ResponseResult.Failure
         }
     }
 
-    override suspend fun loadFullListTickets(): FullListTicketsResponseResult {
+    override suspend fun loadFullListTickets(): ResponseResult {
         val response = apiService.getFullListTickets()
         return if (response.isSuccessful && response.body() != null) {
-            FullListTicketsResponseResult.Success(response.body()!!)
+            ResponseResult.Success<FullListTicketsEntity>(response.body()!!)
         } else {
-            FullListTicketsResponseResult.Failure
+            ResponseResult.Failure
         }
     }
 }

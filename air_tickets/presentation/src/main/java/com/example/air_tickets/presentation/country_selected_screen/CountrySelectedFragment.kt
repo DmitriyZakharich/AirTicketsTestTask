@@ -6,17 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.BuildCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.air_tickets.domain.models.addArrowPriceString
-import com.example.air_tickets.domain.models.priceFormat
 import com.example.air_tickets.presentation.R
 import com.example.air_tickets.presentation.common.DATA_KEY
 import com.example.air_tickets.presentation.common.NUMBER_OF_SEATS
 import com.example.air_tickets.presentation.common.NUMBER_OF_SEATS_KEY
+import com.example.air_tickets.presentation.common.NavigateEvent
+import com.example.air_tickets.presentation.common.NavigateState
 import com.example.air_tickets.presentation.common.PLACE_ARRIVAL_KEY
 import com.example.air_tickets.presentation.common.PLACE_DEPARTURE_KEY
 import com.example.air_tickets.presentation.common.TIME_FORMAT_1
@@ -60,6 +59,7 @@ class CountrySelectedFragment : Fragment() {
         processingIncomingData()
         setupDataChip()
         setupTicketsItems()
+        setupNavigation()
         setupShowAllButton()
         setupImageViewReplace()
         setupImageViewBack()
@@ -119,11 +119,28 @@ class CountrySelectedFragment : Fragment() {
     private fun getBindingList(): List<DirectFlightsItemBinding> =
         listOf(binding.firstItem, binding.secondItem, binding.thirdItem)
 
+    private fun setupNavigation() {
+        jobNavigate = lifecycleScope.launch {
+            viewModel.navigateState.collect {
+                when (it) {
+                    NavigateState.Idle -> {}
+                    is NavigateState.NavigateTo -> findNavController().navigate(it.id, it.bundle)
+                    NavigateState.PopBackStack -> findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
     private fun setupShowAllButton() {
+
         binding.showAll.setOnClickListener {
             val bundle = preparingPassData()
-            findNavController().navigate(
-                R.id.action_countrySelectedFragment_to_ticketsListFragment, bundle
+
+            viewModel.navigate(
+                NavigateEvent.NavigateTo(
+                    R.id.action_countrySelectedFragment_to_ticketsListFragment,
+                    bundle
+                )
             )
         }
     }
@@ -138,7 +155,7 @@ class CountrySelectedFragment : Fragment() {
 
     private fun setupImageViewBack() {
         binding.imageViewBack.setOnClickListener {
-            findNavController().popBackStack()
+            viewModel.navigate(NavigateEvent.PopBackStack)
         }
     }
 
@@ -148,6 +165,7 @@ class CountrySelectedFragment : Fragment() {
         putLong(DATA_KEY, timeMilliseconds)
         putInt(NUMBER_OF_SEATS_KEY, NUMBER_OF_SEATS)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
